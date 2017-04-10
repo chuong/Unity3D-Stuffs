@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody rb;
 	private float nextFire = 0.5f;
 	private float myTime = 0.0f;
+	private AudioSource audio;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody> ();
 		speed = 10.0f;
+		audio = GetComponent<AudioSource> ();
 	}
 
 	void Update()
@@ -35,10 +37,10 @@ public class PlayerController : MonoBehaviour
 			nextFire = myTime + fireDelta;
 			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 
-			// create code here that animates the newProjectile
-
 			nextFire = nextFire - myTime;
 			myTime = 0.0F;
+
+			audio.Play ();
 		}
 	}
 
